@@ -1,8 +1,8 @@
-public class User {
+public class User implements Saveable {
     private String username;
     private String password;
 
-    public User(String username, String password) {
+    public User(String sername, String password) {
         this.username = username;
         this.password = password;
     }
@@ -23,8 +23,8 @@ public class User {
         this.password = password;
     }
 
-    public void greeting(){
-        //Will be called after login to greet the user
+    public void save(){
+        //will be ran to save each user's information
     }
 
 

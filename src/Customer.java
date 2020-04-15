@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 
-public class Customer extends User {
+public class Customer extends User implements Saveable{
     private ArrayList<Flight> pastFlights;
     private ArrayList<Flight> bookedFlights;
     private ArrayList<Review> reviews;
-
 
     public Customer(String username, String password) {
         super(username, password);
@@ -36,5 +35,11 @@ public class Customer extends User {
 
     public void addReview(){
         //whenever the user wants to add a new review
+    }
+
+    @Override
+    public void save(){
+        //will be ran to save each user's information
+        super.save();
     }
 }

@@ -1,4 +1,16 @@
+import java.util.ArrayList;
+
 public class AirlineDriver {
+    private ArrayList<Customer> customers;
+    private ArrayList<Airline> airlines;
+    private ArrayList<Review> reviews;
+    private ArrayList<Flight> flights;
+    private ArrayList<Ticket> tickets;
+
+    public AirlineDriver() {
+        //gather all information by reading through /data
+        //TODO Implement File Reading System
+    }
 
     public static void main(String[] args) {
         //TODO Implement user inputs and system navigation
