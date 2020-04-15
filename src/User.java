@@ -23,4 +23,9 @@ public class User {
         this.password = password;
     }
 
+    public void greeting(){
+        //Will be called after login to greet the user
+    }
+
+
 }
