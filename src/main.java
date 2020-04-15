@@ -4,5 +4,7 @@ public class main {
         int i = 0;
         i++;i++;
         System.out.println(i);
+        i = 10;
+        System.out.println(i==10);
     }
 }
