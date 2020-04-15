@@ -2,7 +2,8 @@ public class User implements Saveable {
     private String username;
     private String password;
 
-    public User(String sername, String password) {
+    public User(String username, String password) {
+        //Creates new user
         this.username = username;
         this.password = password;
     }
@@ -24,6 +25,7 @@ public class User implements Saveable {
     }
 
     public void save(){
+        //TODO Implement save function for all Users
         //will be ran to save each user's information
     }
 

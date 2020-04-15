@@ -1,11 +1,11 @@
-import java.util.ArrayList;
+import java.util.List;
 
 public class AirlineDriver {
-    private ArrayList<Customer> customers;
-    private ArrayList<Airline> airlines;
-    private ArrayList<Review> reviews;
-    private ArrayList<Flight> flights;
-    private ArrayList<Ticket> tickets;
+    private List<Customer> customers;
+    private List<Airline> airlines;
+    private List<Review> reviews;
+    private List<Flight> flights;
+    private List<Ticket> tickets;
 
     public AirlineDriver() {
         //gather all information by reading through /data

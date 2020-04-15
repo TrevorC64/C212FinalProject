@@ -1,45 +1,35 @@
-import java.util.ArrayList;
+import java.util.List;
 
 public class Customer extends User implements Saveable{
-    private ArrayList<Flight> pastFlights;
-    private ArrayList<Flight> bookedFlights;
-    private ArrayList<Review> reviews;
+    private List<Flight> flights;
+    private List<Review> reviews;
 
     public Customer(String username, String password) {
         super(username, password);
+        //TODO Implement creation of new files
     }
 
-    public ArrayList<Flight> getPastFlights() {
-        return pastFlights;
-    }
+    public List<Flight> getFlights() {return this.flights;}
 
-    public void setPastFlights(ArrayList<Flight> pastFlights) {
-        this.pastFlights = pastFlights;
-    }
+    public void setFlights(List<Flight> flights) {this.flights = flights;}
 
-    public ArrayList<Flight> getBookedFlights() {
-        return bookedFlights;
-    }
-
-    public void setBookedFlights(ArrayList<Flight> bookedFlights) {
-        this.bookedFlights = bookedFlights;
-    }
-
-    public ArrayList<Review> getReviews() {
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(ArrayList<Review> reviews) {
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
 
-    public void addReview(){
-        //whenever the user wants to add a new review
+    public void bookFlight(Flight f){
+        this.flights.add(f);
     }
 
     @Override
     public void save(){
+        //TODO Implement save function for Customer
         //will be ran to save each user's information
         super.save();
+
     }
 }
