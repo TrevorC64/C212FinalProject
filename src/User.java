@@ -24,6 +24,14 @@ public class User implements Saveable {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
     public void save(){
         //TODO Implement save function for all Users
         //will be ran to save each user's information

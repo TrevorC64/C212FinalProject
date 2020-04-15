@@ -48,5 +48,23 @@ public class Airline extends User implements Saveable{
         this.pastFlights = pastFlights;
     }
 
+    @Override
+    public String toString() {
+        return "Airline{" +
+                "name='" + name + '\'' +
+                ", availableFlights=" + availableFlights +
+                ", pastFlights=" + pastFlights +
+                ", reviews=" + reviews +
+                ", blacklist=" + blacklist +
+                ", reviewable=" + reviewable +
+                '}';
+    }
+
+    @Override
+    public void save() {
+        super.save();
+    }
+
+
 }
 

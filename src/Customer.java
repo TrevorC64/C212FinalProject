@@ -3,6 +3,7 @@ import java.util.List;
 public class Customer extends User implements Saveable{
     private List<Flight> flights;
     private List<Review> reviews;
+    private int milePoints;
 
     public Customer(String username, String password) {
         super(username, password);
@@ -23,6 +24,15 @@ public class Customer extends User implements Saveable{
 
     public void bookFlight(Flight f){
         this.flights.add(f);
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "flights=" + flights +
+                ", reviews=" + reviews +
+                ", milePoints=" + milePoints +
+                '}';
     }
 
     @Override
