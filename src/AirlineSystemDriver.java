@@ -149,6 +149,7 @@ public class AirlineSystemDriver {
 
                 //if the user correctly inputted their information
                 else if (input.equals("Y") || input.equals("y")) {
+                    running = false;
 
                     //first we must verify the user's login credentials
                     if (this.verifyUser(user, pass)) {
@@ -335,7 +336,7 @@ public class AirlineSystemDriver {
                     if (type.equals("Airline")) {
 
                         //create a new Airline with the inputted information
-                        Airline airline = new Airline(user, pass, user);
+                        Airline airline = new Airline(user, pass, name);
 
                         //add the Airline to airlines
                         this.airlines.add(airline);
