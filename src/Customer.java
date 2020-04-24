@@ -6,8 +6,11 @@ public class Customer extends User implements Saveable{
     private int milePoints;
 
     public Customer(String username, String password) {
-        super(username, password);
+        super(username, password, "Customer");
         //TODO Implement creation of new files
+    }
+    public Customer(){
+        super("a","a","Customer");
     }
 
     public List<Flight> getFlights() {return this.flights;}
@@ -25,6 +28,10 @@ public class Customer extends User implements Saveable{
     public void bookFlight(Flight f){
         this.flights.add(f);
     }
+
+    public int getMilePoints() {return this.milePoints;}
+
+    public void setMilePoints(int milePoints) {this.milePoints = milePoints;}
 
     @Override
     public String toString() {

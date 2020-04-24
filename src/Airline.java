@@ -10,10 +10,16 @@ public class Airline extends User implements Saveable{
     private List<Customer> reviewable;
 
     public Airline(String username, String password, String name) {
-        super(username, password);
+        super(username, password, "Airline");
         this.name = name;
         this.availableFlights = new ArrayList<>();
         this.reviews = new ArrayList<>();
+        this.blacklist = new ArrayList<>();
+        this.reviewable = new ArrayList<>();
+    }
+
+    public Airline(){
+        super("a","a","Airline");
     }
 
     public String getName() {
