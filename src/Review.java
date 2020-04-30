@@ -1,3 +1,4 @@
+import java.util.Comparator;
 public class Review implements Saveable {
     private String message;
     private int rating; //rating 0-5
@@ -68,4 +69,41 @@ public class Review implements Saveable {
     public void save() {
 
     }
+	
+	// Will organize review according to their rating, organized greatest first to least last.
+	public static class SortReveiwByGreatestRating implements Comparator<Review>{
+
+		@Override
+		public int compare(Review o1, Review o2) {
+			return Integer.compare(o2.getRating(), o1.getRating());
+		}
+		
+	}
+	// Will Organize review by least to greatest rating
+	public static class SortReveiwByLeastRating implements Comparator<Review>{
+
+		@Override
+		public int compare(Review o1, Review o2) {
+			return Integer.compare(o1.getRating(), o2.getRating());
+		}
+		
+	}
+	// sort by User name in Alphabetical order
+	public static class SortReveiwByCustomerUsername implements Comparator<Review>{
+
+		@Override
+		public int compare(Review o1, Review o2) {
+			return o1.customer.getUsername().compareTo(o2.getCustomer().getUsername());
+		}
+		
+	}
+	//sort by Airline name in alphabetical order
+	public static class SortReveiwByAirLine implements Comparator<Review>{
+
+		@Override
+		public int compare(Review o1, Review o2) {
+			return o1.getAirline().getName().compareTo(o2.getAirline().getName());
+		}
+		
+	}
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
 
 public class Airline extends User implements Saveable{
     private String name;
@@ -70,7 +71,24 @@ public class Airline extends User implements Saveable{
     public void save() {
         super.save();
     }
+    
+    //Sorts AirlInes in a List by alphabetical name.
+    public class AirLineNameSorter implements Comparator<Airline>{
 
+		@Override
+		public int compare(Airline o1, Airline o2) {
+			return o1.getName().compareTo(o2.getName());
+		}
+	}
+    //Sorts Airlines in a list by number of available Flights
+    public class AirLineNumberOfavailableFlightsSorter implements Comparator<Airline>{
 
+		@Override
+		public int compare(Airline o1, Airline o2) {
+			int length1 = o1.availableFlights.size();
+			int length2 = o2.availableFlights.size();
+			return Integer.compare(length1, length2);
+		}
+    }
 }
 
