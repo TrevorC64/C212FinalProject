@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Comparator;
 
 public class Customer extends User implements Saveable{
     private List<Flight> flights;
@@ -48,5 +49,13 @@ public class Customer extends User implements Saveable{
         //will be ran to save each user's information
         super.save();
 
+    }
+    public static class CustomerUsernameSorter implements Comparator<Customer>{
+
+		@Override
+		public int compare(Customer o1, Customer o2) {
+			return o1.getUsername().compareToIgnoreCase(o2.getUsername());
+		}
+    	
     }
 }

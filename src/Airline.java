@@ -54,6 +54,13 @@ public class Airline extends User implements Saveable{
     public void setPastFlights(List<Flight> pastFlights) {
         this.pastFlights = pastFlights;
     }
+    public List<Customer> getBlacklist() {
+		return blacklist;
+	}
+
+	public void setBlacklist(List<Customer> blacklist) {
+		this.blacklist = blacklist;
+	}
 
     @Override
     public String toString() {

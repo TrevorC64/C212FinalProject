@@ -14,3 +14,6 @@
 /Review$SortReveiwByGreatestRating.class
 /Review$SortReveiwByLeastRating.class
 /AirlineDriver$SortReveiwByLeastRating.class
+/AirlineSystemDriver.class
+/CustomerDriver.class
+/Customer$CustomerUsernameSorter.class
