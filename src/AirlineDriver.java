@@ -290,7 +290,86 @@ public class AirlineDriver {
      * Handles the menu navigation for viewing past flights
      */
     private void pastFlights() {
-    	
+    	 //running used to section off sub menu selections
+        boolean runningPast = true;
+        String inputPast = "";
+        List<Flight> runningFlights = this.user.getPastFlights();
+        Collections.sort(runningFlights, new Flight.SortFlightCost());
+
+        // shows past flights 
+        while(runningPast) {
+            System.out.println("+---------------------------------------------------------+");
+            System.out.println("|                                                         |");
+            for(Flight f : runningFlights) {
+            	 System.out.printf("|Welcome %-s  |", f.toString());
+            }
+            System.out.println("|                                                         |");
+            System.out.println("+---------------------------------------------------------+");
+            System.out.println("|                                                         |");
+            System.out.println("|  Select an Option:                                      |");
+            System.out.println("|     1) Add to past flights                              |");
+            System.out.println("|     2) Remove a past flight                             |");
+            System.out.println("|     3) Sort past flights by cost (default)              |");
+            System.out.println("|     4) Sort past flights by Destination                 |");
+            System.out.println("|     5) Sort past flights by StartingLocation            |");
+            System.out.println("|    -1) To go back                                       |");
+            System.out.println("+---------------------------------------------------------+");
+            //waits for user to give an input
+            if(in.hasNext())
+            	inputPast = in.next();
+
+            //processes the input
+            switch (inputPast){
+                case "1":
+                    //add
+                	System.out.println("|                   Sucessful                                |");
+                	System.out.println("|      Flight is not in currently in avabilve Flights        |");
+                    break;
+                case "2":
+                	 System.out.println("+---------------------------------------------------------+");
+                     System.out.println("|          Enter in an Airline Flight Number              |");
+                     String theFlightNumber = "";
+                     if(in.hasNext())
+                    	 theFlightNumber = in.next();
+                     boolean found = false;
+                     int iterator = -1;
+                     for(int i = 0; i < runningFlights.size()l; i++) {
+                    	 if(runningFlights.get(i).getFlightnumber().equals(theFlightNumber)) {
+                    		 iterator = i;
+                    		 found = true;
+                    	 }
+                     }
+                     if(found) {
+                    	 runningFlights.remove(iterator);
+                    	 this.user.setPastFlights(runningFlights);
+                    	 System.out.println("|                   Sucessful                                |");
+                     }
+                     else {
+                    	 System.out.println("|       Flight is not in currently avabilve Flights          |");
+                     }
+                    break;
+                case "3":
+                    //Sorts by Price
+                	Collections.sort(runningFlights, new Flight.SortFlightCost());
+                    break;
+                case "4":
+                    //Sorts by Destination
+                	Collections.sort(runningFlights, new Flight.SortFlightDestination());
+                    break;
+                case "5":
+                    //Sorts by Starting Point
+                	Collections.sort(runningFlights, new Flight.SortFlightStart());
+                    break;
+                case "-1":
+                    //exits current menu
+                	runningPast = false;
+                    break;
+                default:
+                    //all other inputs are irrelevant for this menu
+                    System.out.println("Invalid Choice.");
+                    break;
+            }
+        }
     }
     /**
      * Handles the menu navigation for managing the available flights

@@ -17,3 +17,6 @@
 /AirlineSystemDriver.class
 /CustomerDriver.class
 /Customer$CustomerUsernameSorter.class
+/Flight$SortFlightCost.class
+/Flight$SortFlightDestination.class
+/Flight$SortFlightStart.class

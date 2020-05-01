@@ -1,7 +1,9 @@
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Comparator;
 
 public class Flight implements Saveable {
+	private String flightNumber; //Format as first three letters of airline and unique number 3 digit number => DAL378
     private Map<Integer, Ticket> seats;
     private String date; // format = "mmddyyy" => "11282000" => Nov 28th 2000
     private String time;     //  format = "hr:min"  => "14:23"    => 2:23 pm
@@ -13,7 +15,7 @@ public class Flight implements Saveable {
     private Airline airline;
     private int miles;
 
-    public Flight(Integer seats, String date, String time, String startingLocation, String endingLocation, double cost, String[] layovers, int flightTime, int miles, Airline airline) {
+    public Flight(Integer seats,String flightnumber, String date, String time, String startingLocation, String endingLocation, double cost, String[] layovers, int flightTime, int miles, Airline airline) {
         //TODO Use seats ^^^^^^ to generate Tickets for the Flight
         this.date = date;
         this.time = time;
@@ -24,6 +26,7 @@ public class Flight implements Saveable {
         this.flightTime = flightTime;
         this.airline = airline;
         this.miles = miles;
+        this.flightNumber = flightnumber;
     }
 
     public Map<Integer, Ticket> getSeats() {
@@ -97,6 +100,12 @@ public class Flight implements Saveable {
     public void setAirline(Airline airline) {
         this.airline = airline;
     }
+    public String getFlightnumber() {
+    	return flightNumber;
+    }
+    public void setFlightnumber(String newFlightNumber) {
+    	this.flightNumber = newFlightNumber;
+    }
 
     @Override
     public String toString() {
@@ -111,11 +120,36 @@ public class Flight implements Saveable {
                 ", flightTime=" + flightTime +
                 ", airline=" + airline +
                 ", miles=" + miles +
+                ", flightNumber=" +flightNumber+
                 '}';
     }
 
     @Override
     public void save() {
 
+    }
+    public static class SortFlightCost implements Comparator<Flight>{
+    	// sorts by least cost
+		@Override
+		public int compare(Flight o1, Flight o2) {
+			return Double.compare(o1.getCost(), o2.getCost());
+		}
+    	
+    }
+    public static class SortFlightDestination implements Comparator<Flight>{
+    	// sorts by Destination
+		@Override
+		public int compare(Flight o1, Flight o2) {
+			return o1.getEndingLocation().compareTo(o2.getEndingLocation());
+		}
+    	
+    }
+    public static class SortFlightStart implements Comparator<Flight>{
+    	// sorts by Starting location
+		@Override
+		public int compare(Flight o1, Flight o2) {
+			return o1.getStartingLocation().compareTo(o2.getStartingLocation());
+		}
+    	
     }
 }
