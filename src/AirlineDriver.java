@@ -136,24 +136,24 @@ public class AirlineDriver {
                 	//waits for user to give an input
                 	if(in.hasNext()) {
                 		NewBlacklister = in.next();
-                		for(Customer c : this.customers) {
-                			customerExists = (c.getUsername() == NewBlacklister) | customerExists;
-                			if(customerExists) {
-                				possibleNewBL = c.getUsername();
-                			}
-                		}
-                		for(String s : runningBlacklist) {
-                			blackListContains = (s == NewBlacklister) | blackListContains;
-                		}
-                		if(customerExists && !blackListContains) {
-                			runningBlacklist.add(possibleNewBL);
-                			this.user.setBlacklist(runningBlacklist);
-                			System.out.println("|   Added the Customer to the blackList                    |");
-                		}
-                		else {
-                			System.out.println("|   Customer is already in the list or doesn't exist       |");
+                	}
+                	for(Customer c : this.customers) {
+                	customerExists = (c.getUsername() == NewBlacklister) || customerExists;
+                		if(customerExists) {
+                			possibleNewBL = c.getUsername();
                 		}
                 	}
+                	for(String s : runningBlacklist) {
+                			blackListContains = (s == NewBlacklister) || blackListContains;
+                	}
+                	if(customerExists && (!blackListContains)) {
+                		runningBlacklist.add(possibleNewBL);
+                		this.user.setBlacklist(runningBlacklist);
+                		System.out.println("|   Added the Customer to the blackList                    |");
+                	}
+                	else {
+                		System.out.println("|   Customer is already in the list or doesn't exist       |");
+               		}
                     break;
                 case "3":
                     //remove customers from black List
@@ -196,7 +196,52 @@ public class AirlineDriver {
      * Handles the menu navigation for managing the mile points
      */
     private void rewards() {
-    	
+    	System.out.println("+---------------------------------------------------------+");
+    	System.out.println("|                                                         |");
+    	if (this.customers != null) {
+    		for(Customer c : this.customers ) {
+  
+    			System.out.printf("| User: %-32s |", c.getUsername());
+        		System.out.println("|                                                         |");
+    		}
+    	}
+    	else {
+    		System.out.println("|                    NO Customers                         |");
+    		System.out.println("|                                                         |");
+    	}
+    	System.out.println("+---------------------------------------------------------+");
+    	boolean runningRewards = true;
+    	String inputRewards = "";
+
+    	//displays the blackList Menu
+    	while(runningRewards) {
+    		System.out.println("+---------------------------------------------------------+");
+    		System.out.println("|                                                         |");
+    		System.out.println("|  Select an Option:                                      |");
+    		System.out.println("|     1) Reward a Customer                                |");
+    		System.out.println("|    -1) Back to Main Menu                                |");
+    		System.out.println("|                                                         |");
+    		System.out.println("+---------------------------------------------------------+");
+    		//waits for user to give an input
+    		if(in.hasNext())
+    			inputRewards = in.next();
+    		
+    		//processes the input
+    		switch (inputRewards){
+    			case "1":
+    				//view current flights
+    				this.availableFlights();
+    				break;
+    			case "-1":
+    				//exits current menu
+    				runningRewards = false;
+    				break;
+    			default:
+    				//all other inputs are irrelevant for this menu
+    				System.out.println("Invalid Choice.");
+    				break;
+    		}
+    	}
     }
     /**
      * Handles the menu navigation for customer reviews
