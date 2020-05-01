@@ -115,6 +115,29 @@ public class Flight implements Saveable {
     public void setFlightnumber(String newFlightNumber) {
     	this.flightNumber = newFlightNumber;
     }
+    public boolean FlightFull() {
+    	boolean fullFlight = true;
+    	for(int i = 1; i <= seats.size(); i++) {
+    		fullFlight = (seats.get(i).getCustomer() == null) && fullFlight;
+    	}
+    	return fullFlight;
+    }
+    public boolean CustomerFlown(String customerUsername) {
+    	boolean CustomerHasFlown = false;
+    	for(int i = 1; i <= seats.size(); i++) {
+    		CustomerHasFlown = (seats.get(i).getCustomer().getUsername() == customerUsername) | CustomerHasFlown;
+    	}
+    	return CustomerHasFlown;
+    }
+    public Ticket CustomerTicket(String customerUsername) {
+    	Ticket customerTicket = null;
+    	for(int i = 1; i <= seats.size(); i++) {
+    		if(seats.get(i).getCustomer().getUsername() == customerUsername) {
+    			customerTicket = seats.get(i);
+    		}
+    	}
+    	return customerTicket;
+    }
 
     @Override
     public String toString() {
@@ -142,6 +165,14 @@ public class Flight implements Saveable {
 		@Override
 		public int compare(Flight o1, Flight o2) {
 			return Double.compare(o1.getCost(), o2.getCost());
+		}
+    	
+    }
+    public static class SortFlightAirlineNumber implements Comparator<Flight>{
+    	// sorts by least cost
+		@Override
+		public int compare(Flight o1, Flight o2) {
+			return o1.getFlightnumber().compareTo(o2.getFlightnumber());
 		}
     	
     }
