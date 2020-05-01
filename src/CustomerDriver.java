@@ -329,6 +329,114 @@ public class CustomerDriver {
      * Handles the menu navigation for viewing available flights
      */
     private void availableFlights() {
+    	//running used to section off sub menu selections
+        boolean runningAvailableFlights = true;
+        String inputAvailableFlights = "";
+        List<Flight> theAvaiableFlgihts = new ArrayList();
+        for(Airline a : this.airlines) {
+        	for(Flight f: a.getAvailableFlights()) {
+        		if(f.FlightFull()) {
+        		}
+        		else {
+        			theAvaiableFlgihts.add(f);
+        		}
+        	}
+        }
+
+        //displays the main menu for Customer Users
+        while(runningAvailableFlights) {
+            System.out.println("+---------------------------------------------------------+");
+            System.out.println("|                                                         |");
+            System.out.printf("| Welcome %10s   Mile Points: %7d |%n", user.getUsername(), user.getMilePoints());
+            System.out.println("|                                                         |");
+            System.out.println("+---------------------------------------------------------+");
+            System.out.println("|                                                         |");
+            System.out.println("|  Select an Option:                                      |");
+            System.out.println("|     1) View by cost                         			  |");
+            System.out.println("|     2) View by Destination                         	  |");
+            System.out.println("|     3) View by Startng Location                         |");
+            System.out.println("|     4) View by FlightNumber                  			  |");
+            System.out.println("|     5) Search Avaliable Fligts                   		  |");
+            System.out.println("|     6) book a flight                              	  |");
+            System.out.println("|    -1) Back to Main Menu                                |");
+            System.out.println("|                                                         |");
+            System.out.println("+---------------------------------------------------------+");
+
+            //waits for user to provide an input then processes it
+            if(in.hasNext())
+            	inputAvailableFlights = in.next();
+
+            //processes the input
+            switch (inputAvailableFlights){
+                case "1":
+                    //view Avaliable flights by Cost
+                	 System.out.println("+---------------------------------------------------------+");
+                     System.out.println("|                 Avaliable   Flights                     |");
+                     Collections.sort(theAvaiableFlgihts, new Flight.SortFlightCost());
+                     for(Flight f: theAvaiableFlgihts) {
+                    	 System.out.println("| "+f.toString()+" |");
+                    	 System.out.println("|                                                         |");
+                     }
+                    break;
+                case "2":
+                    //view Avaliable flights by Destination
+                	System.out.println("+---------------------------------------------------------+");
+                    System.out.println("|                 Avaliable   Flights                     |");
+                    Collections.sort(theAvaiableFlgihts, new Flight.SortFlightDestination());
+                    for(Flight f: theAvaiableFlgihts) {
+                   	 	System.out.println("| "+f.toString()+" |");
+                   	 	System.out.println("|                                                         |");
+                    }
+                    break;
+                case "3":
+                	//view Avaliable flights by Startng Location 
+                	 System.out.println("+---------------------------------------------------------+");
+                     System.out.println("|                 Avaliable   Flights                     |");
+                     Collections.sort(theAvaiableFlgihts, new Flight.SortFlightStart());
+                     for(Flight f: theAvaiableFlgihts) {
+                    	 System.out.println("| "+f.toString()+" |");
+                    	 System.out.println("|                                                         |");
+                     }
+                    break;
+                case "4":
+                	//view Avaliable flights by FlightNumber
+                	System.out.println("+---------------------------------------------------------+");
+                    System.out.println("|                 Avaliable   Flights                     |");
+                    Collections.sort(theAvaiableFlgihts, new Flight.SortFlightAirlineNumber());
+                    for(Flight f: theAvaiableFlgihts) {
+                   	 	System.out.println("| "+f.toString()+" |");
+                   	 	System.out.println("|                                                         |");
+                    }
+                    break;
+                case "5":
+                    //view reviews
+                	this.availableFlightsBooking();
+                    break;
+                case "6":
+                    //view reviews
+                	this.availableFlightsBooking();
+                    break;
+                case "-1":
+                    //exits current menu
+                	runningAvailableFlights = false;
+                    break;
+                default:
+                    //all other inputs are irrelevant for this menu
+                    System.out.println("Invalid Choice.");
+                    break;
+            } 
+        }
+    }
+    /**
+     * Handles the booking of an Avaliableflgiht
+     */
+    private void availableFlightsBooking() {
+    	
+    }
+    /**
+     * Handles the booking of an Avaliableflgiht
+     */
+    private void availableFlightsSearch() {
     	
     }
 }
