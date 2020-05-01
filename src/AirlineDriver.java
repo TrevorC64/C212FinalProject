@@ -307,7 +307,8 @@ public class AirlineDriver {
             System.out.println("+---------------------------------------------------------+");
             System.out.println("|                                                         |");
             System.out.println("|  Select an Option:                                      |");
-            System.out.println("|     1) Add to past flights                              |");
+            System.out.println("|     1) Add to past flights remove from current(means    |");
+            System.out.println("|     (means that the flight was sucessfull)              |");
             System.out.println("|     2) Remove a past flight                             |");
             System.out.println("|     3) Sort past flights by cost (default)              |");
             System.out.println("|     4) Sort past flights by Destination                 |");
@@ -321,9 +322,31 @@ public class AirlineDriver {
             //processes the input
             switch (inputPast){
                 case "1":
-                    //add
-                	System.out.println("|                   Sucessful                                |");
-                	System.out.println("|      Flight is not in currently in avabilve Flights        |");
+                    //add 
+                	System.out.println("+---------------------------------------------------------+");
+                    System.out.println("|          Enter in an Airline Flight Number              |");
+                    String theFlightNumber1 = "";
+                    if(in.hasNext())
+                   	 theFlightNumber1 = in.next();
+                    boolean found1 = false;
+                    int iterator1 = -1;
+                    for(int i = 0; i < this.user.getAvailableFlights().size(); i++) {
+                   	 	if(user.getAvailableFlights().get(i).getFlightnumber() == theFlightNumber1) {
+                   	 		found1 = true;
+                   	 		iterator1 = i;
+                   	 	}
+                    }
+                    if(found1) {
+                    	List<Flight> AF = this.user.getAvailableFlights();
+                    	AF.remove(iterator1);
+                    	runningFlights.add(this.user.getAvailableFlights().get(iterator1));
+                    	this.user.setAvailableFlights(AF);
+                    	this.user.setPastFlights(runningFlights);
+                   	 	System.out.println("|                   Sucessful                                |");
+                    }
+                    else {
+                    	System.out.println("|       Flight is not in currently avabilve Flights          |");
+                    }
                     break;
                 case "2":
                 	 System.out.println("+---------------------------------------------------------+");
@@ -345,7 +368,7 @@ public class AirlineDriver {
                     	 System.out.println("|                   Sucessful                                |");
                      }
                      else {
-                    	 System.out.println("|       Flight is not in currently avabilve Flights          |");
+                    	 System.out.println("|       Flight is not in current past Flights          |");
                      }
                     break;
                 case "3":
