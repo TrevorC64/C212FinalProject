@@ -218,7 +218,7 @@ public class AirlineDriver {
     		System.out.println("+---------------------------------------------------------+");
     		System.out.println("|                                                         |");
     		System.out.println("|  Select an Option:                                      |");
-    		System.out.println("|     1) Reward a Customer                                |");
+    		System.out.println("|     1) Reward a Customer 50 Miles                       |");
     		System.out.println("|    -1) Back to Main Menu                                |");
     		System.out.println("|                                                         |");
     		System.out.println("+---------------------------------------------------------+");
@@ -229,8 +229,31 @@ public class AirlineDriver {
     		//processes the input
     		switch (inputRewards){
     			case "1":
-    				//view current flights
-    				this.availableFlights();
+    				//Rewarding a Customer
+    				System.out.println("+---------------------------------------------------------+");
+	                System.out.println("|                                                         |");
+	                System.out.println("|       Enter a Username in the system                    |");
+	                System.out.println("|                                                         |");
+	                System.out.println("+---------------------------------------------------------+");
+	                boolean noSuccess = true;
+	                String beingRewarded = "";
+	                if(in.hasNext()) {
+	                	beingRewarded = in.next();
+	                }
+	                if(this.customers != null) {
+	                	for(int i = 0; i < this.customers.size(); i++ ) {
+	                		if(this.customers.get(i).getUsername().equals(beingRewarded)){
+	                			noSuccess = false;
+	                			Customer c1 = this.customers.get(i);
+	                			c1.setMilePoints(c1.getMilePoints()+50);
+	                			this.customers.set(i, c1);
+	                			System.out.println("|                   Customer Rewarded                     |");
+	                		}
+	            		}
+	                }
+	                if(noSuccess) {
+	                	System.out.println("|                 Customer NOT Rewarded                   |");
+	                }
     				break;
     			case "-1":
     				//exits current menu
