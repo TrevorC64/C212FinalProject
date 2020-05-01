@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.nio.file.LinkPermission;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,7 @@ public class AirlineSystemDriver {
     User loggedInUser;
 
     /**
-     * Constructer, also loads data
+     * Constructor, also loads data
      */
     public AirlineSystemDriver() {
         //gather all information by reading through /data
@@ -39,7 +41,27 @@ public class AirlineSystemDriver {
         //default values below to avoid NullPointer
         this.loggedInUser = new User("a","a","a");
     }
-
+    public void populateTheSystem(String filepath) {
+    	try(Scanner input = new Scanner(new File(filepath))){
+    	}
+    	catch(FileNotFoundException e) {
+    		System.out.println("Incorrect file path, Please try with a difrrent file");
+    	}
+    }
+    public void savingTheSystem(String filepath) {
+    	try(PrintWriter saving = new PrintWriter(new File(filepath))){
+    		for(Customer c : this.customers) {
+    			saving.println(c);
+    		}
+    		saving.println();
+    		for(Airline a : this.airlines) {
+    			saving.println(a);
+    		}
+    	}
+    	catch(Exception e) {
+    		System.out.println("Saving error");
+    	}
+    }
     /**
      * Creates the main menu for the Airline System, quitting this menu exits the program
      */
@@ -416,6 +438,7 @@ public class AirlineSystemDriver {
     public static void main(String[] args) {
         //TODO Implement user inputs and system navigation
         //this is where the program will be ran
+    	// "C:\\Users\\jason\\OneDrive\\Desktop\\AirlineSave.txt"
 
         //---------------------testing code---------------------
 
@@ -423,7 +446,6 @@ public class AirlineSystemDriver {
         Customer c1 = new Customer("trejcunn", "coolcool");
         c1.setMilePoints(5000);
         cs.add(c1);
-
         ArrayList<Airline> als = new ArrayList<>();
         Airline a1 = new Airline("admin", "p", "Delta");
         als.add(a1);
@@ -436,5 +458,7 @@ public class AirlineSystemDriver {
         //then call mainMenu()
         airlineDriver.mainMenu();
         airlineDriver.in.close();
+        airlineDriver.savingTheSystem("C:\\Users\\jason\\OneDrive\\Desktop\\AirlineSave.txt");
+       // airlineDriver.populateTheSystem("C:\\Users\\jason\\OneDrive\\Desktop\\AirlineSave.txt");
     }
 }

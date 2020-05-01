@@ -2,16 +2,16 @@ import java.util.Comparator;
 public class Review implements Saveable {
     private String message;
     private int rating; //rating 0-5
-    private Airline airline;
+    private String airlineName;
     private Ticket ticket;
-    private Customer customer;
+    private String customerUsername;
 
-    public Review(String message, int rating, Airline airline, Ticket ticket, Customer customer) {
+    public Review(String message, int rating, String airline, Ticket ticket, String customer) {
         this.message = message;
         this.rating = rating;
-        this.airline = airline;
+        this.airlineName = airline;
         this.ticket = ticket;
-        this.customer = customer;
+        this.customerUsername = customer;
     }
 
     public String getMessage() {
@@ -30,12 +30,12 @@ public class Review implements Saveable {
         this.rating = rating;
     }
 
-    public Airline getAirline() {
-        return airline;
+    public String getAirlineName() {
+        return airlineName;
     }
 
-    public void setAirline(Airline airline) {
-        this.airline = airline;
+    public void setAirlineName(String airline) {
+        this.airlineName = airline;
     }
 
     public Ticket getTicket() {
@@ -46,12 +46,12 @@ public class Review implements Saveable {
         this.ticket = ticket;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getCustomername() {
+        return customerUsername;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerName(String customer) {
+        this.customerUsername = customer;
     }
 
     @Override
@@ -59,9 +59,9 @@ public class Review implements Saveable {
         return "Review{" +
                 "message='" + message + '\'' +
                 ", rating=" + rating +
-                ", airline=" + airline +
+                ", airline=" + airlineName +
                 ", ticket=" + ticket +
-                ", customer=" + customer +
+                ", customer=" + customerUsername +
                 '}';
     }
 
@@ -93,7 +93,7 @@ public class Review implements Saveable {
 
 		@Override
 		public int compare(Review o1, Review o2) {
-			return o1.customer.getUsername().compareTo(o2.getCustomer().getUsername());
+			return o1.getCustomername().compareTo(o2.getCustomername());
 		}
 		
 	}
@@ -102,7 +102,7 @@ public class Review implements Saveable {
 
 		@Override
 		public int compare(Review o1, Review o2) {
-			return o1.getAirline().getName().compareTo(o2.getAirline().getName());
+			return o1.getAirlineName().compareTo(o2.getAirlineName());
 		}
 		
 	}

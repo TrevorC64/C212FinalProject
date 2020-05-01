@@ -90,7 +90,7 @@ public class AirlineDriver {
      * Handles the menu navigation for managing the blacklist
      */
     private void blacklist() {
-    	List<Customer> runningBlacklist = this.user.getBlacklist();
+    	List<String> runningBlacklist = this.user.getBlacklist();
     	boolean runningBlack = true;
         String inputBlack = "";
 
@@ -113,11 +113,11 @@ public class AirlineDriver {
             switch (inputBlack){
                 case "1":
                 	//Sorting stuff 
-                	Collections.sort(runningBlacklist, new Customer.CustomerUsernameSorter());
+                	Collections.sort(runningBlacklist, null);
                 	System.out.println("+---------------------------------------------------------+");
 	                System.out.println("|                                                         |");
-	               	for(Customer c : runningBlacklist) {
-	               		 System.out.printf("| User: %-32s |%n", c.getUsername() );
+	               	for(String s : runningBlacklist) {
+	               		 System.out.printf("| User: %-32s |%n", s );
 	              		 System.out.println("|                                                         |");
 	               	}
 	               	System.out.println("+---------------------------------------------------------+");
@@ -132,18 +132,18 @@ public class AirlineDriver {
                 	String NewBlacklister = "";
                 	boolean customerExists = false;
                 	boolean blackListContains = false;
-                	Customer possibleNewBL = null;
+                	String possibleNewBL = null;
                 	//waits for user to give an input
                 	if(in.hasNext()) {
                 		NewBlacklister = in.next();
                 		for(Customer c : this.customers) {
                 			customerExists = (c.getUsername() == NewBlacklister) | customerExists;
                 			if(customerExists) {
-                				possibleNewBL = c;
+                				possibleNewBL = c.getUsername();
                 			}
                 		}
-                		for(Customer c : runningBlacklist) {
-                			blackListContains = (c.getUsername() == NewBlacklister) | blackListContains;
+                		for(String s : runningBlacklist) {
+                			blackListContains = (s == NewBlacklister) | blackListContains;
                 		}
                 		if(customerExists && !blackListContains) {
                 			runningBlacklist.add(possibleNewBL);
@@ -169,7 +169,7 @@ public class AirlineDriver {
                 		BlackListremoval = in.next();
                 	}
                 	for(int i = 0; i < runningBlacklist.size(); i++) {
-                		if(runningBlacklist.get(i).getUsername() == BlackListremoval) {
+                		if(runningBlacklist.get(i) == BlackListremoval) {
                 			Success = true;
                 			runningBlacklist.remove(i);
                 		}
@@ -205,7 +205,7 @@ public class AirlineDriver {
     	List<Review> ThisArilineReviews = new ArrayList<Review>();
     	for(Customer c : this.customers) {
     		for (Review r : c.getReviews()) {
-    			if(r.getAirline().getName().equals(user.getName())) {
+    			if(r.getAirlineName().equals(user.getName())) {
     				ThisArilineReviews.add(r);
     			}
     		}
@@ -233,7 +233,7 @@ public class AirlineDriver {
             	 System.out.println("+---------------------------------------------------------+");
             	 System.out.println("|                                                         |");
             	 for(Review r : ThisArilineReviews) {
-            		 System.out.printf("| %-32s User: %s, Rating : %d |%n", r.getAirline().getName(), r.getCustomer().getUsername(),
+            		 System.out.printf("| %-32s User: %s, Rating : %d |%n", r.getAirlineName(), r.getCustomername(),
             				 r.getRating());
             		 System.out.printf("| Message: %s |%n", r.getMessage());
             		 System.out.printf("| Ticket: %s |%n", r.getTicket());
@@ -247,7 +247,7 @@ public class AirlineDriver {
             	 System.out.println("+---------------------------------------------------------+");
             	 System.out.println("|                                                         |");
             	 for(Review r : ThisArilineReviews) {
-            		 System.out.printf("| %-32s User: %s, Rating : %d |%n", r.getAirline().getName(), r.getCustomer().getUsername(),
+            		 System.out.printf("| %-32s User: %s, Rating : %d |%n", r.getAirlineName(), r.getCustomername(),
             				 r.getRating());
             		 System.out.printf("| Message: %s |%n", r.getMessage());
             		 System.out.printf("| Ticket: %s |%n", r.getTicket());
@@ -260,7 +260,7 @@ public class AirlineDriver {
             	 System.out.println("+---------------------------------------------------------+");
             	 System.out.println("|                                                         |");
             	 for(Review r : ThisArilineReviews) {
-            		 System.out.printf("| %-32s User: %s, Rating : %d |%n", r.getAirline().getName(), r.getCustomer().getUsername(),
+            		 System.out.printf("| %-32s User: %s, Rating : %d |%n", r.getAirlineName(), r.getCustomername(),
             				 r.getRating());
             		 System.out.printf("| Message: %s |%n", r.getMessage());
             		 System.out.printf("| Ticket: %s |%n", r.getTicket());
@@ -288,14 +288,20 @@ public class AirlineDriver {
         boolean runningPast = true;
         String inputPast = "";
         List<Flight> runningFlights = this.user.getPastFlights();
-        Collections.sort(runningFlights, new Flight.SortFlightCost());
-
+        if(runningFlights != null) {
+        	Collections.sort(runningFlights, new Flight.SortFlightCost());
+        }
         // shows past flights 
         while(runningPast) {
             System.out.println("+---------------------------------------------------------+");
             System.out.println("|                                                         |");
-            for(Flight f : runningFlights) {
-            	 System.out.printf("| %-s  |", f.toString());
+            if(runningFlights != null) {
+            	for(Flight f : runningFlights) {
+            		System.out.printf("|"+f.toString()+" |");
+            	}
+            }
+            else {
+            	System.out.println("|                       No Flights                        |");
             }
             System.out.println("|                                                         |");
             System.out.println("+---------------------------------------------------------+");
@@ -350,10 +356,12 @@ public class AirlineDriver {
                     	 theFlightNumber = in.next();
                      boolean found = false;
                      int iterator = -1;
-                     for(int i = 0; i < runningFlights.size(); i++) {
-                    	 if(runningFlights.get(i).getFlightnumber().equals(theFlightNumber)) {
-                    		 iterator = i;
-                    		 found = true;
+                     if(runningFlights != null){
+                    	 for(int i = 0; i < runningFlights.size(); i++) {
+                    		 if(runningFlights.get(i).getFlightnumber().equals(theFlightNumber)) {
+                    			 iterator = i;
+                    			 found = true;
+                    		 }
                     	 }
                      }
                      if(found) {
@@ -367,15 +375,21 @@ public class AirlineDriver {
                     break;
                 case "3":
                     //Sorts by Price
-                	Collections.sort(runningFlights, new Flight.SortFlightCost());
-                    break;
+                	if(runningFlights != null) {
+                		Collections.sort(runningFlights, new Flight.SortFlightCost());
+                	}
+                	break;
                 case "4":
                     //Sorts by Destination
-                	Collections.sort(runningFlights, new Flight.SortFlightDestination());
+                	if(runningFlights != null) {
+                		Collections.sort(runningFlights, new Flight.SortFlightDestination());
+                	}
                     break;
                 case "5":
                     //Sorts by Starting Point
-                	Collections.sort(runningFlights, new Flight.SortFlightStart());
+                	if(runningFlights != null) {
+                		Collections.sort(runningFlights, new Flight.SortFlightStart());
+                	}
                     break;
                 case "-1":
                     //exits current menu
@@ -400,7 +414,7 @@ public class AirlineDriver {
             System.out.println("+---------------------------------------------------------+");
             System.out.println("|                                                         |");
             for(Flight f : theAvaiableFlights) {
-            	 System.out.printf("|Welcome %-s  |", f.toString());
+            	 System.out.printf("|"+f.toString()+" |");
             }
             System.out.println("|                                                         |");
             System.out.println("+---------------------------------------------------------+");
@@ -461,10 +475,16 @@ public class AirlineDriver {
                 if(in.hasNextDouble()) {
                 	cost = in.nextDouble();}
                 ArrayList<String> aLLayovers = new ArrayList<>();
-                System.out.println("|Enter in a List of Layovers by spaces (Example: Alabama Indiana Illinois      |");
-                while(in.hasNext()) {
+                System.out.println("|List of Layovers by spaces (Example: Alabama Indiana )|");
+                String myLayovers = "";
+                if(in.hasNext()) {
+					myLayovers = in.nextLine();
+                }
+                Scanner linescanner = new Scanner(myLayovers);
+                if(linescanner.hasNext()) {
                 	aLLayovers.add(in.next());
                 }
+                linescanner.close();
                 String[] layovers = new String[aLLayovers.size()];
                 layovers = aLLayovers.toArray(layovers);
                 int flightTime = 0;
@@ -477,7 +497,7 @@ public class AirlineDriver {
                 	miles = in.nextInt();}
                 Airline myAirline = this.user;
             	Flight addedFlight = new Flight(flightnumber, seatNumber, date, time,
-            			startingLocation, endingLocation, cost, layovers, flightTime,miles, myAirline);
+            			startingLocation, endingLocation, cost, layovers, flightTime,miles, myAirline.getName());
             	theAvaiableFlights.add(addedFlight);
             	this.user.setAvailableFlights(theAvaiableFlights);
             	System.out.println("|                     Success                          |");

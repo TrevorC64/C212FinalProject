@@ -180,7 +180,7 @@ public class CustomerDriver {
         	for(Flight f : pastFlights) {
         		if (f.getFlightnumber() == flightNumber) {
         			Ticket thisTicket = f.CustomerTicket(this.user.getUsername());
-        			Airline thisAirline = f.getAirline();
+        			String thisAirline = f.getAirlinename();
         			System.out.println("+---------------------------------------------------------+");
         	        System.out.println("|                 Give a rating (0-5)                     |");
         	        if(in.hasNextInt()) {
@@ -191,7 +191,7 @@ public class CustomerDriver {
                 	        if(in.hasNextLine()) {
                 	        	message = in.nextLine();
                 	        	List<Review> theirReviews = this.user.getReviews();
-                	        	theirReviews.add(new Review(message, rating, thisAirline, thisTicket, user));
+                	        	theirReviews.add(new Review(message, rating, thisAirline, thisTicket, user.getUsername()));
                 	        	this.user.setReviews(theirReviews);
                 	        	noSuccess = false;
                 	        	System.out.println("|                Success                                  |");
@@ -286,7 +286,7 @@ public class CustomerDriver {
                     		if(theirBookedFlights.get(i).getFlightnumber() == removalFlightNumber) {
                     			removalflight = theirBookedFlights.get(i);
                     			for(Airline a: this.airlines) {
-                    				if(a.getName() == removalflight.getAirline().getName());{
+                    				if(a.getName() == removalflight.getAirlinename()){
                     					for(Flight f: a.getAvailableFlights()) {
                     						if(f.getFlightnumber() == removalFlightNumber) {
                     							if(f.getSeats().containsKey(seatNumber)) {
@@ -353,11 +353,11 @@ public class CustomerDriver {
             System.out.println("+---------------------------------------------------------+");
             System.out.println("|                                                         |");
             System.out.println("|  Select an Option:                                      |");
-            System.out.println("|     1) View by cost                         			  |");
-            System.out.println("|     2) View by Destination                         	  |");
+            System.out.println("|     1) View by cost                                     |");
+            System.out.println("|     2) View by Destination                              |");
             System.out.println("|     3) View by Startng Location                         |");
-            System.out.println("|     4) View by FlightNumber                  			  |");
-            System.out.println("|     5) Search Avaliable Fligts                   		  |");
+            System.out.println("|     4) View by FlightNumber                             |");
+            System.out.println("|     5) Search Avaliable Fligts                          |");
             System.out.println("|     6) book a flight                              	  |");
             System.out.println("|    -1) Back to Main Menu                                |");
             System.out.println("|                                                         |");

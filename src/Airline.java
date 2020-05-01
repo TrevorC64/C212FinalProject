@@ -6,15 +6,13 @@ public class Airline extends User implements Saveable{
     private String name;
     private List<Flight> availableFlights;
     private List<Flight> pastFlights;
-    private List<Review> reviews;
-    private List<Customer> blacklist;
-    private List<Customer> reviewable;
+    private List<String> blacklist;
+    private List<String> reviewable;
 
     public Airline(String username, String password, String name) {
         super(username, password, "Airline");
         this.name = name;
         this.availableFlights = new ArrayList<>();
-        this.reviews = new ArrayList<>();
         this.blacklist = new ArrayList<>();
         this.reviewable = new ArrayList<>();
     }
@@ -39,14 +37,6 @@ public class Airline extends User implements Saveable{
         this.availableFlights = availableFlights;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
-
     public List<Flight> getPastFlights() {
         return pastFlights;
     }
@@ -54,11 +44,12 @@ public class Airline extends User implements Saveable{
     public void setPastFlights(List<Flight> pastFlights) {
         this.pastFlights = pastFlights;
     }
-    public List<Customer> getBlacklist() {
+    
+    public List<String> getBlacklist() {
 		return blacklist;
 	}
 
-	public void setBlacklist(List<Customer> blacklist) {
+	public void setBlacklist(List<String> blacklist) {
 		this.blacklist = blacklist;
 	}
 	public void updateAvailableFlights(Flight updatedFlight) {
@@ -76,7 +67,6 @@ public class Airline extends User implements Saveable{
                 "name='" + name + '\'' +
                 ", availableFlights=" + availableFlights +
                 ", pastFlights=" + pastFlights +
-                ", reviews=" + reviews +
                 ", blacklist=" + blacklist +
                 ", reviewable=" + reviewable +
                 '}';

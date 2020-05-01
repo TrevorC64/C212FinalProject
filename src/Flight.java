@@ -1,10 +1,11 @@
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class Flight implements Saveable {
 	private String flightNumber; //Format as first three letters of airline and unique number 3 digit number => DAL378
-    private Map<Integer, Ticket> seats;
+    private Map<Integer, Ticket> seats = new HashMap<>();
     private String date; // format = "mmddyyy" => "11282000" => Nov 28th 2000
     private String time;     //  format = "hr:min"  => "14:23"    => 2:23 pm
     private String startingLocation;
@@ -12,10 +13,10 @@ public class Flight implements Saveable {
     private double cost;
     private String[] layovers;
     private int flightTime;
-    private Airline airline;
     private int miles;
+    private String Airlinename;
 
-    public Flight(String flightnumber, Integer seats, String date, String time, String startingLocation, String endingLocation, double cost, String[] layovers, int flightTime, int miles, Airline airline) {
+    public Flight(String flightnumber, Integer seats, String date, String time, String startingLocation, String endingLocation, double cost, String[] layovers, int flightTime, int miles, String airlinename) {
     	this.flightNumber = flightnumber;
     	for(int i = 1; i <= seats; i++) {
     		double newCost = cost;
@@ -25,7 +26,7 @@ public class Flight implements Saveable {
     		else {
     			newCost = cost;
     		}
-    		this.seats.put(i, new Ticket(flightnumber, i, newCost, false, airline, null, miles));
+    		this.seats.put(i, new Ticket(flightnumber, i, newCost, false, null, miles));
     	}
         this.date = date;
         this.time = time;
@@ -34,8 +35,8 @@ public class Flight implements Saveable {
         this.cost = cost;
         this.layovers = layovers;
         this.flightTime = flightTime;
-        this.airline = airline;
         this.miles = miles;
+        this.Airlinename = airlinename;
     }
 
     public Map<Integer, Ticket> getSeats() {
@@ -101,38 +102,38 @@ public class Flight implements Saveable {
     public void setFlightTime(int flightTime) {
         this.flightTime = flightTime;
     }
-
-    public Airline getAirline() {
-        return airline;
-    }
-
-    public void setAirline(Airline airline) {
-        this.airline = airline;
-    }
     public String getFlightnumber() {
     	return flightNumber;
     }
     public void setFlightnumber(String newFlightNumber) {
     	this.flightNumber = newFlightNumber;
     }
-    public boolean FlightFull() {
+    public String getAirlinename() {
+		return Airlinename;
+	}
+
+	public void setAirlinename(String airlinename) {
+		Airlinename = airlinename;
+	}
+
+	public boolean FlightFull() {
     	boolean fullFlight = true;
     	for(int i = 1; i <= seats.size(); i++) {
-    		fullFlight = (seats.get(i).getCustomer() == null) && fullFlight;
+    		fullFlight = (seats.get(i).getCustomeruserName() == null) && fullFlight;
     	}
     	return fullFlight;
     }
     public boolean CustomerFlown(String customerUsername) {
     	boolean CustomerHasFlown = false;
     	for(int i = 1; i <= seats.size(); i++) {
-    		CustomerHasFlown = (seats.get(i).getCustomer().getUsername() == customerUsername) | CustomerHasFlown;
+    		CustomerHasFlown = (seats.get(i).getCustomeruserName() == customerUsername) | CustomerHasFlown;
     	}
     	return CustomerHasFlown;
     }
     public Ticket CustomerTicket(String customerUsername) {
     	Ticket customerTicket = null;
     	for(int i = 1; i <= seats.size(); i++) {
-    		if(seats.get(i).getCustomer().getUsername() == customerUsername) {
+    		if(seats.get(i).getCustomeruserName() == customerUsername) {
     			customerTicket = seats.get(i);
     		}
     	}
@@ -140,12 +141,12 @@ public class Flight implements Saveable {
     }
     public void setSeatFull(int number, Customer c) {
     	Ticket UpdatedTicket = this.seats.get(number);
-    	UpdatedTicket.setCustomer(c);
+    	UpdatedTicket.setCustomer(c.getUsername());
     	UpdatedTicket.setAvailable(false);
     	this.seats.put(number, UpdatedTicket);
     }
     public boolean getSeatNull(int number) {
-    	return (this.seats.get(number).getCustomer() == null);
+    	return (this.seats.get(number).getCustomeruserName() == null);
     }
     public void setSeatnull(int number) {
     	Ticket UpdatedTicket = this.seats.get(number);
@@ -166,7 +167,6 @@ public class Flight implements Saveable {
                 ", cost=" + cost +
                 ", layovers=" + Arrays.toString(layovers) +
                 ", flightTime=" + flightTime +
-                ", airline=" + airline +
                 ", miles=" + miles +
                 '}';
     }
