@@ -15,8 +15,11 @@ public class Flight implements Saveable {
     private Airline airline;
     private int miles;
 
-    public Flight(Integer seats,String flightnumber, String date, String time, String startingLocation, String endingLocation, double cost, String[] layovers, int flightTime, int miles, Airline airline) {
-        //TODO Use seats ^^^^^^ to generate Tickets for the Flight
+    public Flight(String flightnumber, Integer seats, String date, String time, String startingLocation, String endingLocation, double cost, String[] layovers, int flightTime, int miles, Airline airline) {
+    	this.flightNumber = flightnumber;
+    	//        for(int i = 0; i < seats; i++) {
+//        	
+//        }
         this.date = date;
         this.time = time;
         this.startingLocation = startingLocation;
@@ -26,7 +29,6 @@ public class Flight implements Saveable {
         this.flightTime = flightTime;
         this.airline = airline;
         this.miles = miles;
-        this.flightNumber = flightnumber;
     }
 
     public Map<Integer, Ticket> getSeats() {
@@ -110,7 +112,8 @@ public class Flight implements Saveable {
     @Override
     public String toString() {
         return "Flight{" +
-                "seats=" + seats +
+        		"flightNumber=" +flightNumber+
+                ", seats=" + seats +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
                 ", startingLocation='" + startingLocation + '\'' +
@@ -120,7 +123,6 @@ public class Flight implements Saveable {
                 ", flightTime=" + flightTime +
                 ", airline=" + airline +
                 ", miles=" + miles +
-                ", flightNumber=" +flightNumber+
                 '}';
     }
 

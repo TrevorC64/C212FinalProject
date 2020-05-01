@@ -96,16 +96,13 @@ public class AirlineDriver {
 
         //displays the blackList Menu
         while(runningBlack) {
-        	System.out.println("+---------------------------------------------------------+");
-            System.out.println("|                                                         |");
-            System.out.printf("| Welcome %-32s    Back to Main Menu (-1) |%n", user.getName() + " User");
-            System.out.println("|                                                         |");
             System.out.println("+---------------------------------------------------------+");
             System.out.println("|                                                         |");
             System.out.println("|  Select an Option:                                      |");
             System.out.println("|     1) View BlackList                                   |");
             System.out.println("|     2) Add customer to BlackList                        |");
             System.out.println("|     3) Remove customer from BlackList                   |");
+            System.out.println("|    -1) Back to Main Menu                                |");
             System.out.println("|                                                         |");
             System.out.println("+---------------------------------------------------------+");
 
@@ -216,16 +213,13 @@ public class AirlineDriver {
     	boolean reviewsRunnning = true;
     	 String inputReview = "";
     	while(reviewsRunnning) {
-    	 System.out.println("+---------------------------------------------------------+");
-         System.out.println("|                                                         |");
-         System.out.printf("| Welcome %-32s    Back to Main Menu (-1) |%n", user.getName() + " User");
-         System.out.println("|                                                         |");
          System.out.println("+---------------------------------------------------------+");
          System.out.println("|                                                         |");
          System.out.println("|  Select an Option:                                      |");
          System.out.println("|     1) View your current reviews by Customer            |");
          System.out.println("|     2) View your current reviews by greatest rating     |");
          System.out.println("|     3) View your current reviews by Lowest rating       |");
+         System.out.println("|    -1) Back to Main Menu                                |");
          System.out.println("|                                                         |");
          System.out.println("+---------------------------------------------------------+");
          //waits for user to give an input
@@ -301,7 +295,7 @@ public class AirlineDriver {
             System.out.println("+---------------------------------------------------------+");
             System.out.println("|                                                         |");
             for(Flight f : runningFlights) {
-            	 System.out.printf("|Welcome %-s  |", f.toString());
+            	 System.out.printf("| %-s  |", f.toString());
             }
             System.out.println("|                                                         |");
             System.out.println("+---------------------------------------------------------+");
@@ -398,6 +392,141 @@ public class AirlineDriver {
      * Handles the menu navigation for managing the available flights
      */
     private void availableFlights() {
+    	boolean runningAvaiable = true;
+        String inpustAvaiable = "";
+        List<Flight> theAvaiableFlights = this.user.getAvailableFlights();
+        Collections.sort(theAvaiableFlights, new Flight.SortFlightCost());
+        while(runningAvaiable) {
+            System.out.println("+---------------------------------------------------------+");
+            System.out.println("|                                                         |");
+            for(Flight f : theAvaiableFlights) {
+            	 System.out.printf("|Welcome %-s  |", f.toString());
+            }
+            System.out.println("|                                                         |");
+            System.out.println("+---------------------------------------------------------+");
+            System.out.println("|                                                         |");
+            System.out.println("|  Select an Option:                                      |");
+            System.out.println("|     1) Add to Avaible flights                           |");
+            System.out.println("|     2) Remove Avaible flight                            |");
+            System.out.println("|     3) Sort Avaible flights by cost (default)           |");
+            System.out.println("|     4) Sort Avaible flights by Destination              |");
+            System.out.println("|     5) Sort Avaible flights by StartingLocation         |");
+            System.out.println("|    -1) To go back                                       |");
+            System.out.println("|                                                         |");
+            System.out.println("+---------------------------------------------------------+");
+            
+            //waits for user to give an input
+            if(in.hasNext())
+            	inpustAvaiable = in.next();
+           
+            switch (inpustAvaiable){
+            case "1":
+            	//add Airline
+                System.out.println("|          Enter in an number of seats                     |");
+                int seatNumber = 0;
+                if(in.hasNextInt()){
+                	seatNumber = in.nextInt();}
+                System.out.println("|   Enter FlightNumber (Example: ABC123) first 3 letters of airline, and unique 3 number   |");
+                String flightnumber = "";
+                if(in.hasNext()) {
+                	flightnumber = in.next();
+                	boolean notUnique = false;
+                	for(Flight f : theAvaiableFlights) {
+                		if(flightnumber == f.getFlightnumber()) {
+                			System.out.println("|    The Flight number was not unique                     |");
+                			notUnique = true;
+                		}
+                	}
+                	if(notUnique) {
+                		break;}
+                }
+                String date = "";
+                System.out.println("| Enter Date   format => 11282000 => Nov 28th 2000     |");
+                if(in.hasNext()) {
+                	date = in.next();}
+                String time = "";
+                System.out.println("| Enter Time   format => 14:23    => 2:23 pm           |");
+                if(in.hasNext()) {
+                	time = in.next();}
+                String startingLocation = "";
+                System.out.println("|             Enter Starting location                  |");
+                if(in.hasNext()) {
+                	startingLocation = in.next();}
+                String endingLocation = "";
+                System.out.println("|              Enter Ending location                   |");
+                if(in.hasNext()) {
+                	endingLocation = in.next();}
+                double cost = 0.0;
+                System.out.println("|          Enter Ending Cost (example: 25.00)          |");
+                if(in.hasNextDouble()) {
+                	cost = in.nextDouble();}
+                ArrayList<String> aLLayovers = new ArrayList<>();
+                System.out.println("|Enter in a List of Layovers by spaces (Example: Alabama Indiana Illinois      |");
+                while(in.hasNext()) {
+                	aLLayovers.add(in.next());
+                }
+                String[] layovers = new String[aLLayovers.size()];
+                layovers = aLLayovers.toArray(layovers);
+                int flightTime = 0;
+                System.out.println("|          Enter integer for flight time               |");
+                if(in.hasNextInt()) {
+                	flightTime = in.nextInt();}
+                int miles = 0;
+                System.out.println("|          Enter integer for miles                     |");
+                if(in.hasNextInt()) {
+                	miles = in.nextInt();}
+                Airline myAirline = this.user;
+            	Flight addedFlight = new Flight(flightnumber, seatNumber, date, time,
+            			startingLocation, endingLocation, cost, layovers, flightTime,miles, myAirline);
+            	theAvaiableFlights.add(addedFlight);
+            	this.user.setAvailableFlights(theAvaiableFlights);
+            	System.out.println("|                     Success                          |");
+                break;
+            case "2":
+            	//removes from available flight
+            	 System.out.println("+---------------------------------------------------------+");
+                 System.out.println("|          Enter in an Airline Flight Number              |");
+                 String thisFliNum1 = "";
+                 if(in.hasNext())
+                	 thisFliNum1 = in.next();
+                 boolean flifound1 = false;
+                 int iter1 = -1;
+                 for(int i = 0; i < theAvaiableFlights.size(); i++) {
+                	 if(theAvaiableFlights.get(i).getFlightnumber().equals(thisFliNum1)) {
+                		 iter1 = i;
+                		 flifound1 = true;
+                	 }
+                 }
+                 if(flifound1) {
+                	 theAvaiableFlights.remove(iter1);
+                	 this.user.setAvailableFlights(theAvaiableFlights);;
+                	 System.out.println("|                   Sucessful                              |");
+                 }
+                 else {
+                	 System.out.println("|       Flight is not in Available Flights                 |");
+                 }
+                break;
+            case "3":
+                //Sorts by Price
+            	Collections.sort(theAvaiableFlights, new Flight.SortFlightCost());
+                break;
+            case "4":
+                //Sorts by Destination
+            	Collections.sort(theAvaiableFlights, new Flight.SortFlightDestination());
+                break;
+            case "5":
+                //Sorts by Starting Point
+            	Collections.sort(theAvaiableFlights, new Flight.SortFlightStart());
+                break;
+            case "-1":
+                //exits current menu
+            	runningAvaiable = false;
+                break;
+            default:
+                //all other inputs are irrelevant for this menu
+                System.out.println("Invalid Choice.");
+                break;
+            }
+        }
     }
-
 }
