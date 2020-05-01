@@ -17,9 +17,16 @@ public class Flight implements Saveable {
 
     public Flight(String flightnumber, Integer seats, String date, String time, String startingLocation, String endingLocation, double cost, String[] layovers, int flightTime, int miles, Airline airline) {
     	this.flightNumber = flightnumber;
-    	//        for(int i = 0; i < seats; i++) {
-//        	
-//        }
+    	for(int i = 1; i <= seats; i++) {
+    		double newCost = cost;
+    		if(seats >= 2 && i <= seats/2) {
+    			newCost = cost*1.5;
+    		}
+    		else {
+    			newCost = cost;
+    		}
+    		this.seats.put(i, new Ticket(flightnumber, i, newCost, false, airline, null, miles));
+    	}
         this.date = date;
         this.time = time;
         this.startingLocation = startingLocation;

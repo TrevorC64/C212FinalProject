@@ -1,5 +1,5 @@
 public class Ticket implements Saveable {
-    private Flight flight;
+    private String flightNumber;
     private int seat;
     private double cost;
     private boolean available;
@@ -7,8 +7,8 @@ public class Ticket implements Saveable {
     private Customer customer; //null if not purchased
     private int miles;
 
-    public Ticket(Flight flight, int seat, double cost, boolean available, Airline airline, Customer customer, int miles) {
-        this.flight = flight;
+    public Ticket(String flightNumber, int seat, double cost, boolean available, Airline airline, Customer customer, int miles) {
+        this.flightNumber = flightNumber;
         this.seat = seat;
         this.cost = cost;
         this.available = available;
@@ -17,12 +17,12 @@ public class Ticket implements Saveable {
         this.miles = miles;
     }
 
-    public Flight getFlight() {
-        return flight;
+    public String getflightNumber() {
+        return flightNumber;
     }
 
-    public void setFlight(Flight flight) {
-        this.flight = flight;
+    public void setflightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
     }
 
     public int getSeat() {
@@ -80,7 +80,7 @@ public class Ticket implements Saveable {
     @Override
     public String toString() {
         return "Ticket{" +
-                "flight=" + flight +
+                "flightNumber=" + flightNumber +
                 ", seat=" + seat +
                 ", cost=" + cost +
                 ", available=" + available +
