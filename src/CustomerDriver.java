@@ -166,6 +166,7 @@ public class CustomerDriver {
      */
     private void writeReviews(List<Flight> pastFlights) {
     	String flightNumber = "";
+    	boolean noSuccess = true;
     	String message = "";
     	int rating = 0;
     	System.out.println("+---------------------------------------------------------+");
@@ -192,7 +193,9 @@ public class CustomerDriver {
                 	        	List<Review> theirReviews = this.user.getReviews();
                 	        	theirReviews.add(new Review(message, rating, thisAirline, thisTicket, user));
                 	        	this.user.setReviews(theirReviews);
+                	        	noSuccess = false;
                 	        	System.out.println("|                Success                                  |");
+                	        	break;
                 	        }
                 	        else {
                 	        	System.out.println("|               Problem occured                           |");
@@ -206,11 +209,10 @@ public class CustomerDriver {
         	        	}
         	        }
         		}
-        		else {
-        			System.out.println("|            Incorrect Flight Number                      |");
-        			break;
-        		}
         	}
+        }
+        if(noSuccess) {
+        	System.out.println("|               Problem occured                           |");
         }
         
     }
@@ -235,11 +237,98 @@ public class CustomerDriver {
      * Handles the menu navigation for viewing booked flights
      */
     private void bookedFlights() {
+    	 //running used to section off sub menu selections
+        boolean runningbookedFlights = true;
+        String inputbookedFlights = "";
+        List<Flight> theirBookedFlights = this.user.getFlights();
+        Collections.sort(theirBookedFlights, new Flight.SortFlightAirlineNumber());
+
+        //displays the main menu for Customer Booked flights 
+        while(runningbookedFlights) {
+            System.out.println("+---------------------------------------------------------+");
+            System.out.println("|                                                         |");
+            System.out.printf("| Welcome %10s   Mile Points: %7d   |%n", user.getUsername(), user.getMilePoints());
+            System.out.println("|                                                         |");
+            System.out.println("+---------------------------------------------------------+");
+            System.out.println("|                                                         |");
+            for(Flight f: theirBookedFlights) {
+            	System.out.println("| "+f.toString()+" |");
+            }
+            System.out.println("+---------------------------------------------------------+");
+            System.out.println("|                                                         |");
+            System.out.println("|  Select an Option:                                      |");
+            System.out.println("|     1) Cancel flight                                    |");
+            System.out.println("|    -1) Back to Main Menu                                |");
+            System.out.println("|                                                         |");
+            System.out.println("+---------------------------------------------------------+");
+
+            //waits for user to provide an input then processes it
+            if(in.hasNext())
+            	inputbookedFlights = in.next();
+
+            //processes the input
+            switch (inputbookedFlights){
+                case "1":
+                	boolean noSucess = true;
+                	int seatNumber = 0;
+                	String removalFlightNumber = "";
+                	System.out.println("+---------------------------------------------------------+");
+                    System.out.println("|                Enter in a Flight Number                 |");
+                    if(in.hasNext()) {
+                    	removalFlightNumber = in.next();
+                    	System.out.println("+---------------------------------------------------------+");
+                        System.out.println("|                Enter in a seat Number                   |");
+                    	if(in.hasNextInt()) {
+                    		seatNumber = in.nextInt();
+                    	}
+                    	Flight removalflight = null;
+                    	for(int i = 0; i < theirBookedFlights.size(); i++) {
+                    		if(theirBookedFlights.get(i).getFlightnumber() == removalFlightNumber) {
+                    			removalflight = theirBookedFlights.get(i);
+                    			for(Airline a: this.airlines) {
+                    				if(a.getName() == removalflight.getAirline().getName());{
+                    					for(Flight f: a.getAvailableFlights()) {
+                    						if(f.getFlightnumber() == removalFlightNumber) {
+                    							if(f.getSeats().containsKey(seatNumber)) {
+                    								f.setSeatnull(seatNumber);
+                    								noSucess = false;
+                    								System.out.println("+---------------------------------------------------------+");
+                    		                        System.out.println("|                Sucess                   |");
+                    							}
+                    						}
+                    					}
+                    				}
+                    			}
+                    			if(theirBookedFlights.get(i).CustomerFlown(this.user.getUsername())) {
+                    			}
+                    			else {
+                    				theirBookedFlights.remove(i);
+                        			this.user.setFlights(theirBookedFlights);
+                    			}
+                    		}	
+                    	}
+                    }
+                    if(noSucess) {
+                    	 System.out.println("|                A Problem has occured                 |");
+                    }
+                    
+                    break;
+                case "-1":
+                    //exits current menu
+                	runningbookedFlights = false;
+                    break;
+                default:
+                    //all other inputs are irrelevant for this menu
+                    System.out.println("Invalid Choice.");
+                    break;
+            }
+        }
     }
 
     /**
      * Handles the menu navigation for viewing available flights
      */
     private void availableFlights() {
+    	
     }
 }

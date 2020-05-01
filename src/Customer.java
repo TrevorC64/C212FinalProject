@@ -29,7 +29,12 @@ public class Customer extends User implements Saveable{
     public void bookFlight(Flight f){
         this.flights.add(f);
     }
-
+    public boolean haveFunds(int cost) {
+    	return true;
+    }
+    public void returnFunds() {
+    	
+    }
     public int getMilePoints() {return this.milePoints;}
 
     public void setMilePoints(int milePoints) {this.milePoints = milePoints;}

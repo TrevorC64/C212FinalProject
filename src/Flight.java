@@ -138,6 +138,11 @@ public class Flight implements Saveable {
     	}
     	return customerTicket;
     }
+    public void setSeatnull(int number) {
+    	Ticket UpdatedTicket = this.seats.get(number);
+    	UpdatedTicket.setCustomer(null);
+    	this.seats.put(number, UpdatedTicket);
+    }
 
     @Override
     public String toString() {
