@@ -61,6 +61,14 @@ public class Airline extends User implements Saveable{
 	public void setBlacklist(List<Customer> blacklist) {
 		this.blacklist = blacklist;
 	}
+	public void updateAvailableFlights(Flight updatedFlight) {
+		for(int i = 0; i < this.availableFlights.size(); i++) {
+			if(this.getAvailableFlights().get(i).getFlightnumber().equalsIgnoreCase(updatedFlight.getFlightnumber())) {
+				this.availableFlights.set(i, updatedFlight);
+			}
+		}
+			
+	}
 
     @Override
     public String toString() {

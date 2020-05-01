@@ -291,9 +291,10 @@ public class CustomerDriver {
                     						if(f.getFlightnumber() == removalFlightNumber) {
                     							if(f.getSeats().containsKey(seatNumber)) {
                     								f.setSeatnull(seatNumber);
+                    								user.setMilePoints(user.getMilePoints() - f.getSeats().get(seatNumber).getMiles());
                     								noSucess = false;
                     								System.out.println("+---------------------------------------------------------+");
-                    		                        System.out.println("|                Sucess                   |");
+                    		                        System.out.println("|                        Success                          |");
                     							}
                     						}
                     					}
@@ -431,6 +432,64 @@ public class CustomerDriver {
      * Handles the booking of an Avaliableflgiht
      */
     private void availableFlightsBooking() {
+    	String airlineName = "";
+    	Airline theAirline = null;
+    	int AirlineIndex = 0;
+    	String FlightNumber = "";
+    	Flight theFlight = null;
+    	int theFlightIndex = 0;
+    	int theSeatNumber = 0;
+    	System.out.println("+---------------------------------------------------------+");
+        System.out.println("|                 Insert Airline Name                     |");
+        if(in.hasNext()) {
+        	airlineName = in.next();
+        }
+        for(int i = 0; i < this.airlines.size(); i++) {
+        	if(this.airlines.get(i).getName().equalsIgnoreCase(airlineName)) {
+        		theAirline = this.airlines.get(i);
+        		AirlineIndex = i;
+        	}
+        }
+        if(theAirline != null) {
+        	System.out.println("+---------------------------------------------------------+");
+            System.out.println("|                 Insert Flight Number                     |");
+            if(in.hasNext()) {
+            	FlightNumber = in.next();
+            }
+            for(int j = 0; j <theAirline.getAvailableFlights().size(); j++) {
+            	if(theAirline.getAvailableFlights().get(j).getFlightnumber().equalsIgnoreCase(FlightNumber)) {
+            		theFlight = theAirline.getAvailableFlights().get(j);
+            	}
+            }
+            if(theFlight != null) {
+            	System.out.println("+---------------------------------------------------------+");
+                System.out.println("|                 Insert Seat Number                      |");
+                if(in.hasNextInt()) {
+                	theSeatNumber = in.nextInt();
+                }
+                if(theFlight.getSeats().containsKey(theSeatNumber)&& theFlight.getSeatNull(theSeatNumber)) {
+                	theFlight.setSeatFull(theSeatNumber, user);
+                	user.bookFlight(theFlight);
+                	user.setMilePoints(user.getMilePoints()+ theFlight.getSeats().get(theSeatNumber).getMiles());
+                	theAirline.updateAvailableFlights(theFlight);
+                	this.airlines.set(AirlineIndex, theAirline);
+                }
+                else {
+                	System.out.println("+---------------------------------------------------------+");
+                    System.out.println("|            Incorrect or Full Seat Number                |");
+                }
+            	
+            }
+            else {
+            	System.out.println("+---------------------------------------------------------+");
+                System.out.println("|              Incorrect Flight Number                    |");
+            }
+            
+        }
+        else {
+        	System.out.println("+---------------------------------------------------------+");
+            System.out.println("|                 Incorrect Airline name                  |");
+        }
     	
     }
     /**

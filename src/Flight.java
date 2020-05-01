@@ -138,9 +138,19 @@ public class Flight implements Saveable {
     	}
     	return customerTicket;
     }
+    public void setSeatFull(int number, Customer c) {
+    	Ticket UpdatedTicket = this.seats.get(number);
+    	UpdatedTicket.setCustomer(c);
+    	UpdatedTicket.setAvailable(false);
+    	this.seats.put(number, UpdatedTicket);
+    }
+    public boolean getSeatNull(int number) {
+    	return (this.seats.get(number).getCustomer() == null);
+    }
     public void setSeatnull(int number) {
     	Ticket UpdatedTicket = this.seats.get(number);
     	UpdatedTicket.setCustomer(null);
+    	UpdatedTicket.setAvailable(true);
     	this.seats.put(number, UpdatedTicket);
     }
 
