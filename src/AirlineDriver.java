@@ -333,7 +333,7 @@ public class AirlineDriver {
                     	 theFlightNumber = in.next();
                      boolean found = false;
                      int iterator = -1;
-                     for(int i = 0; i < runningFlights.size()l; i++) {
+                     for(int i = 0; i < runningFlights.size(); i++) {
                     	 if(runningFlights.get(i).getFlightnumber().equals(theFlightNumber)) {
                     		 iterator = i;
                     		 found = true;
