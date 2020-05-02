@@ -4,10 +4,10 @@ import java.util.Comparator;
 
 public class Airline extends User implements Saveable{
     private String name;
-    private List<Flight> availableFlights;
-    private List<Flight> pastFlights;
-    private List<String> blacklist;
-    private List<String> reviewable;
+    private List<Flight> availableFlights = new ArrayList<>();
+    private List<Flight> pastFlights = new ArrayList<>();
+    private List<String> blacklist = new ArrayList<>();
+    private List<String> reviewable = new ArrayList<>();
 
     public Airline(String username, String password, String name) {
         super(username, password, "Airline");

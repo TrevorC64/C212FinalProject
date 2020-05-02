@@ -549,7 +549,7 @@ public class AirlineDriver {
 					myLayovers = in.nextLine();
                 }
                 Scanner linescanner = new Scanner(myLayovers);
-                if(linescanner.hasNext()) {
+                while(linescanner.hasNext()) {
                 	aLLayovers.add(in.next());
                 }
                 linescanner.close();
@@ -558,11 +558,13 @@ public class AirlineDriver {
                 int flightTime = 0;
                 System.out.println("|          Enter integer for flight time               |");
                 if(in.hasNextInt()) {
-                	flightTime = in.nextInt();}
+                	flightTime = in.nextInt();
+                }
                 int miles = 0;
                 System.out.println("|          Enter integer for miles                     |");
-                if(in.hasNextInt()) {
-                	miles = in.nextInt();}
+                if(in.hasNext()) {
+                	miles = in.nextInt();
+                }
                 Airline myAirline = this.user;
             	Flight addedFlight = new Flight(flightnumber, seatNumber, date, time,
             			startingLocation, endingLocation, cost, layovers, flightTime,miles, myAirline.getName());
