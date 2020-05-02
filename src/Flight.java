@@ -119,7 +119,7 @@ public class Flight implements Saveable {
 	public boolean FlightFull() {
     	boolean fullFlight = true;
     	for(int i = 1; i <= seats.size(); i++) {
-    		fullFlight = (seats.get(i).getCustomeruserName() == null) && fullFlight;
+    		fullFlight = (seats.get(i).getCustomeruserName() != null) && fullFlight;
     	}
     	return fullFlight;
     }
@@ -168,6 +168,7 @@ public class Flight implements Saveable {
                 ", layovers=" + Arrays.toString(layovers) +
                 ", flightTime=" + flightTime +
                 ", miles=" + miles +
+                ", AirlineName=" + Airlinename+
                 '}';
     }
 

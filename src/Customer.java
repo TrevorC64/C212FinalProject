@@ -30,7 +30,7 @@ public class Customer extends User implements Saveable{
     public void bookFlight(Flight f){
         this.flights.add(f);
     }
-    public boolean haveFunds(int cost) {
+    public boolean haveFunds(double cost) {
     	return true;
     }
     public void returnFunds() {

@@ -9,8 +9,8 @@ import java.util.Scanner;
  */
 public class CustomerDriver {
     //All the Customers & Airlines in the system
-    List<Customer> customers;
-    List<Airline> airlines;
+    List<Customer> customers = new ArrayList<Customer>();
+    List<Airline> airlines = new ArrayList<Airline>();
     Scanner in;
 
     //Currently logged-in user
@@ -376,7 +376,7 @@ public class CustomerDriver {
                      System.out.println("|                 Avaliable   Flights                     |");
                      Collections.sort(theAvaiableFlgihts, new Flight.SortFlightCost());
                      for(Flight f: theAvaiableFlgihts) {
-                    	 System.out.println("| "+f.toString()+" |");
+                    	 System.out.printf("| %-48s |", f.toString());
                     	 System.out.println("|                                                         |");
                      }
                     break;
@@ -469,11 +469,16 @@ public class CustomerDriver {
                 	theSeatNumber = in.nextInt();
                 }
                 if(theFlight.getSeats().containsKey(theSeatNumber)&& theFlight.getSeatNull(theSeatNumber)) {
-                	theFlight.setSeatFull(theSeatNumber, user);
-                	user.bookFlight(theFlight);
-                	user.setMilePoints(user.getMilePoints()+ theFlight.getSeats().get(theSeatNumber).getMiles());
-                	theAirline.updateAvailableFlights(theFlight);
-                	this.airlines.set(AirlineIndex, theAirline);
+                	double aCost = theFlight.getSeats().get(theSeatNumber).getCost();
+                	if(user.haveFunds(aCost)) {
+                		theFlight.setSeatFull(theSeatNumber, user);
+                		user.bookFlight(theFlight);
+                		user.setMilePoints(user.getMilePoints()+ theFlight.getSeats().get(theSeatNumber).getMiles());
+                		System.out.println("+---------------------------------------------------------+");
+                		System.out.println("|                 User Has Funds                          |");
+                		theAirline.updateAvailableFlights(theFlight);
+                		this.airlines.set(AirlineIndex, theAirline);
+                	}	
                 }
                 else {
                 	System.out.println("+---------------------------------------------------------+");
