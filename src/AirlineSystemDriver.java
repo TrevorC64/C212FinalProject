@@ -14,8 +14,6 @@ public class AirlineSystemDriver {
     //These Lists are used for the login system
     private List<Customer> customers;
     private List<Airline> airlines;
-    private List<Flight> flights;
-    private List<Ticket> tickets;
 
     //scanner to be used by every driver
     Scanner in;
@@ -35,34 +33,11 @@ public class AirlineSystemDriver {
 
         this.customers = new ArrayList<>();
         this.airlines = new ArrayList<>();
-        this.flights = new ArrayList<>();
-        this.tickets = new ArrayList<>();
 
         //default values below to avoid NullPointer
         this.loggedInUser = new User("a","a","a");
     }
-    public void populateTheSystem(String filepath) {
-    	try{
-    	    Scanner input = new Scanner(new File(filepath));
-    	}
-    	catch(FileNotFoundException e) {
-    		System.out.println("Incorrect file path, Please try with a different file");
-    	}
-    }
-    public void savingTheSystem(String filepath) {
-    	try(PrintWriter saving = new PrintWriter(new File(filepath))){
-    		for(Customer c : this.customers) {
-    			saving.println(c);
-    		}
-    		saving.println();
-    		for(Airline a : this.airlines) {
-    			saving.println(a);
-    		}
-    	}
-    	catch(Exception e) {
-    		System.out.println("Saving error");
-    	}
-    }
+
     /**
      * Creates the main menu for the Airline System, quitting this menu exits the program
      */
@@ -401,7 +376,9 @@ public class AirlineSystemDriver {
      */
     public void help(){
         System.out.println("+----------------------------------+");
-        System.out.println("|This Has Yet To Be Implemented    |");
+        System.out.println("|Follow the on screen instructions |");
+        System.out.println("|for menu options, type the number |");
+        System.out.println("|of the option you wish to select. |");
         System.out.println("+----------------------------------+");
     }
 
@@ -464,7 +441,6 @@ public class AirlineSystemDriver {
         //then call mainMenu()
         airlineDriver.mainMenu();
         airlineDriver.in.close();
-        airlineDriver.savingTheSystem("C:\\Users\\jason\\OneDrive\\Desktop\\AirlineSave.txt");
-       // airlineDriver.populateTheSystem("C:\\Users\\jason\\OneDrive\\Desktop\\AirlineSave.txt");
+
     }
 }
