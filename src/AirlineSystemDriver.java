@@ -43,7 +43,7 @@ public class AirlineSystemDriver {
     }
     public void populateTheSystem(String filepath) {
     	try{
-    	    Scanner input = new Scanner(new File(filepath))
+    	    Scanner input = new Scanner(new File(filepath));
     	}
     	catch(FileNotFoundException e) {
     		System.out.println("Incorrect file path, Please try with a different file");
