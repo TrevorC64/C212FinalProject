@@ -8,17 +8,22 @@ Congrats!  You’re  hired  to  create  a  project  that  lets  users  search  f
 - [Java](https://www.java.com/en/)
 
 ## Features
-What makes your project stand out?
+It doesn't have data permanence(sarcasm)
 
 ## Installation
-Provide step by step series of examples and explanations about how to get a development env running.
+Use github destop to hook the src to your IDE, then run the 
 
 ## Tests
-Describe and show how to run the tests with code examples.
+When created a test in the System 
 
 ## How to use?
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
+Simply get the scr and run in eclipse or another IDE you use
+Run the AirlineSystemDriver first (Don't run AirlineDriver or customerDriver first)
+There is no data permanence in the program
+Follow the Menus and follow directions
+Some users are prewritten as tests so you can interact with those if you want
 
 
 ## Credits
-Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
+Work all done by Trevor Cunningham & Jason Edwards
+suggestions given by Alan Edwards(father) to Jason Edwards
