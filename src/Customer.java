@@ -2,6 +2,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/** Customer User Class
+ * Made for C212 SP20 for the final project.
+ * @author Team 27
+ */
 public class Customer extends User {
     private List<Flight> flights = new ArrayList<>();
     private List<Review> reviews = new ArrayList<>();

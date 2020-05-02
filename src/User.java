@@ -1,3 +1,7 @@
+/** User class, superclass for Customer & Airline
+ * Made for C212 SP20 for the final project.
+ * @author Team 27
+ */
 public class User {
     private String username;
     private String password;

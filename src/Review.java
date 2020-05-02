@@ -1,4 +1,9 @@
 import java.util.Comparator;
+
+/** Class for reviews for Airlines
+ * Made for C212 SP20 for the final project.
+ * @author Team 27
+ */
 public class Review {
     private String message;
     private int rating; //rating 0-5

@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
 
+/** Airline User Class
+ * Made for C212 SP20 for the final project.
+ * @author Team 27
+ */
 public class Airline extends User{
     private String name;
     private List<Flight> availableFlights = new ArrayList<>();

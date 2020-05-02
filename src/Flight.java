@@ -3,6 +3,10 @@ import java.util.Map;
 import java.util.Comparator;
 import java.util.HashMap;
 
+/** Class for Airline Flights
+ * Made for C212 SP20 for the final project.
+ * @author Team 27
+ */
 public class Flight{
 	private String flightNumber; //Format as first three letters of airline and unique number 3 digit number => DAL378
     private Map<Integer, Ticket> seats = new HashMap<>();

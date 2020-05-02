@@ -1,3 +1,7 @@
+/** Class for Flight Tickets
+ * Made for C212 SP20 for the final project.
+ * @author Team 27
+ */
 public class Ticket {
     private String flightNumber;
     private int seat;
