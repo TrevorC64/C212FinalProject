@@ -8,22 +8,40 @@ Congrats!  You’re  hired  to  create  a  project  that  lets  users  search  f
 - [Java](https://www.java.com/en/)
 
 ## Features
-It doesn't have data permanence(sarcasm)
+- Creation of Users (Airlines & Customers)
+- Login System
+
+  Airlines:
+  - Add/Remove Flights
+  - View Reviews
+  - Create Blacklist
+  - Mile Points
+  - See Past Flights
+  
+  Customers:
+  - Purchase/Cancel Flight Tickets
+  - View/Create Reviews
+  - Mile Points
+  - See Past Flights
+  
+- It doesn't have data permanence(sarcasm)
 
 ## Installation
 Use github destop to hook the src to your IDE, then run it.
 
 ## Tests
-When created a test in the System 
+All tests were done in main functions (User Input Required).
 
 ## How to use?
-Simply get the scr and run in eclipse or another IDE you use
-Run the AirlineSystemDriver first (Don't run AirlineDriver or customerDriver first)
-There is no data permanence in the program
-Follow the Menus and follow directions
-Some users are prewritten as tests so you can interact with those if you want
-the flights are printed in one long line, so you will have scroll left and right for reliven data like airlineNames
+1. Install
+2. Navigate to AirlineSystemDriver and run
+3. Follow the Menus and follow directions
+
+Notes:
+ - There is no data permanence in the program
+ - Some users are prewritten as tests so you can interact with those if you want
+ - The flights are printed in one long line, so you will have scroll left and right for reliven data like airlineNames
 
 ## Credits
-Work all done by Trevor Cunningham & Jason Edwards
+All work done by Trevor Cunningham & Jason Edwards
 suggestions given by Alan Edwards(father) to Jason Edwards
