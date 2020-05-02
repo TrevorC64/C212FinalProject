@@ -11,7 +11,7 @@ Congrats!  You’re  hired  to  create  a  project  that  lets  users  search  f
 It doesn't have data permanence(sarcasm)
 
 ## Installation
-Use github destop to hook the src to your IDE, then run the 
+Use github destop to hook the src to your IDE, then run it.
 
 ## Tests
 When created a test in the System 
@@ -22,7 +22,7 @@ Run the AirlineSystemDriver first (Don't run AirlineDriver or customerDriver fir
 There is no data permanence in the program
 Follow the Menus and follow directions
 Some users are prewritten as tests so you can interact with those if you want
-
+the flights are printed in one long line, so you will have scroll left and right for reliven data like airlineNames
 
 ## Credits
 Work all done by Trevor Cunningham & Jason Edwards
