@@ -1,4 +1,4 @@
-public class User implements Saveable {
+public class User {
     private String username;
     private String password;
     private String type;
@@ -39,11 +39,5 @@ public class User implements Saveable {
     public boolean checkLogin(String username, String pass){
         return (this.username.equals(username) && this.password.equals(pass));
     }
-
-    public void save(){
-        //TODO Implement save function for all Users
-        //will be ran to save each user's information
-    }
-
 
 }

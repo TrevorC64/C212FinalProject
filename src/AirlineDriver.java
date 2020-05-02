@@ -9,8 +9,8 @@ import java.util.Collections;
  */
 public class AirlineDriver {
     //All the Customers & Airlines in the system
-    List<Customer> customers;
-    List<Airline> airlines;
+    public List<Customer> customers;
+    public List<Airline> airlines;
     Scanner in;
 
     //Currently logged-in user

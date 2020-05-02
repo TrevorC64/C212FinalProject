@@ -3,7 +3,7 @@ import java.util.Map;
 import java.util.Comparator;
 import java.util.HashMap;
 
-public class Flight implements Saveable {
+public class Flight{
 	private String flightNumber; //Format as first three letters of airline and unique number 3 digit number => DAL378
     private Map<Integer, Ticket> seats = new HashMap<>();
     private String date; // format = "mmddyyy" => "11282000" => Nov 28th 2000
@@ -172,10 +172,6 @@ public class Flight implements Saveable {
                 '}';
     }
 
-    @Override
-    public void save() {
-
-    }
     public static class SortFlightCost implements Comparator<Flight>{
     	// sorts by least cost
 		@Override

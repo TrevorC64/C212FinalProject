@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
 
-public class Airline extends User implements Saveable{
+public class Airline extends User{
     private String name;
     private List<Flight> availableFlights = new ArrayList<>();
     private List<Flight> pastFlights = new ArrayList<>();
@@ -72,11 +72,6 @@ public class Airline extends User implements Saveable{
                 '}';
     }
 
-    @Override
-    public void save() {
-        super.save();
-    }
-    
     //Sorts AirlInes in a List by alphabetical name.
     public class AirLineNameSorter implements Comparator<Airline>{
 

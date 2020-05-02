@@ -1,5 +1,5 @@
 import java.util.Comparator;
-public class Review implements Saveable {
+public class Review {
     private String message;
     private int rating; //rating 0-5
     private String airlineName;
@@ -65,11 +65,6 @@ public class Review implements Saveable {
                 '}';
     }
 
-    @Override
-    public void save() {
-
-    }
-	
 	// Will organize review according to their rating, organized greatest first to least last.
 	public static class SortReveiwByGreatestRating implements Comparator<Review>{
 

@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Customer extends User implements Saveable{
+public class Customer extends User {
     private List<Flight> flights = new ArrayList<>();
     private List<Review> reviews = new ArrayList<>();
     private int milePoints;
@@ -49,13 +49,6 @@ public class Customer extends User implements Saveable{
                 '}';
     }
 
-    @Override
-    public void save(){
-        //TODO Implement save function for Customer
-        //will be ran to save each user's information
-        super.save();
-
-    }
     public static class CustomerUsernameSorter implements Comparator<Customer>{
 
 		@Override

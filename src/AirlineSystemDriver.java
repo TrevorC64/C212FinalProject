@@ -24,13 +24,13 @@ public class AirlineSystemDriver {
     User loggedInUser;
 
     /**
-     * Constructor, also loads data
+     * Constructor
      */
     public AirlineSystemDriver() {
         //gather all information by reading through /data
         //TODO Implement File Reading System
-        //load all users first
 
+        //load all users first
         this.in = new Scanner(System.in);
 
         this.customers = new ArrayList<>();
@@ -45,7 +45,7 @@ public class AirlineSystemDriver {
     	try(Scanner input = new Scanner(new File(filepath))){
     	}
     	catch(FileNotFoundException e) {
-    		System.out.println("Incorrect file path, Please try with a difrrent file");
+    		System.out.println("Incorrect file path, Please try with a different file");
     	}
     }
     public void savingTheSystem(String filepath) {

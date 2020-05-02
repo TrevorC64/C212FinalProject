@@ -1,4 +1,4 @@
-public class Ticket implements Saveable {
+public class Ticket {
     private String flightNumber;
     private int seat;
     private double cost;
@@ -79,8 +79,5 @@ public class Ticket implements Saveable {
                 '}';
     }
 
-    @Override
-    public void save() {
 
-    }
 }
