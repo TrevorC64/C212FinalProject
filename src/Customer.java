@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Customer extends User implements Saveable{
-    private List<Flight> flights;
+    private List<Flight> flights = new ArrayList<>();
     private List<Review> reviews = new ArrayList<>();
     private int milePoints;
 

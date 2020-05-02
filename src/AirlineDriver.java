@@ -550,7 +550,7 @@ public class AirlineDriver {
                 }
                 Scanner linescanner = new Scanner(myLayovers);
                 while(linescanner.hasNext()) {
-                	aLLayovers.add(in.next());
+                	aLLayovers.add(linescanner.next());
                 }
                 linescanner.close();
                 String[] layovers = new String[aLLayovers.size()];
@@ -562,7 +562,7 @@ public class AirlineDriver {
                 }
                 int miles = 0;
                 System.out.println("|          Enter integer for miles                     |");
-                if(in.hasNext()) {
+                if(in.hasNextInt()) {
                 	miles = in.nextInt();
                 }
                 Airline myAirline = this.user;

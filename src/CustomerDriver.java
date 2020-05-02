@@ -80,6 +80,7 @@ public class CustomerDriver {
 
             }
         }
+        
     }
 
     /**
@@ -333,7 +334,7 @@ public class CustomerDriver {
     	//running used to section off sub menu selections
         boolean runningAvailableFlights = true;
         String inputAvailableFlights = "";
-        List<Flight> theAvaiableFlgihts = new ArrayList();
+        List<Flight> theAvaiableFlgihts = new ArrayList<>();
         for(Airline a : this.airlines) {
         	for(Flight f: a.getAvailableFlights()) {
         		if(f.FlightFull()) {

@@ -448,6 +448,11 @@ public class AirlineSystemDriver {
         cs.add(c1);
         ArrayList<Airline> als = new ArrayList<>();
         Airline a1 = new Airline("admin", "p", "Delta");
+        ArrayList<Flight> availableFlights = new ArrayList<Flight>();
+        String[] someLayovers = {"Handover", "Dover"}; 
+        Flight f1 = new Flight("DEL130", 5, "11283000", "12:30", "Illinois,Chigago", "Indiana,Indianapolis", 35.00, someLayovers, 200, 230, "Delta");
+        availableFlights.add(f1);
+        a1.setAvailableFlights(availableFlights);
         als.add(a1);
 
         //run the program by creating an instance of AirlineSystemDriver
