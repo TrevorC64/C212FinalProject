@@ -138,13 +138,13 @@ public class AirlineDriver {
                 		NewBlacklister = in.next();
                 	}
                 	for(Customer c : this.customers) {
-                	customerExists = (c.getUsername() == NewBlacklister) || customerExists;
+                	customerExists = (c.getUsername().equals(NewBlacklister)) || customerExists;
                 		if(customerExists) {
                 			possibleNewBL = c.getUsername();
                 		}
                 	}
                 	for(String s : runningBlacklist) {
-                			blackListContains = (s == NewBlacklister) || blackListContains;
+                			blackListContains = (s.equals(NewBlacklister)) || blackListContains;
                 	}
                 	if(customerExists && (!blackListContains)) {
                 		runningBlacklist.add(possibleNewBL);
@@ -169,7 +169,7 @@ public class AirlineDriver {
                 		BlackListremoval = in.next();
                 	}
                 	for(int i = 0; i < runningBlacklist.size(); i++) {
-                		if(runningBlacklist.get(i) == BlackListremoval) {
+                		if(runningBlacklist.get(i).equals(BlackListremoval)) {
                 			Success = true;
                 			runningBlacklist.remove(i);
                 		}
@@ -399,7 +399,7 @@ public class AirlineDriver {
                     boolean found1 = false;
                     int iterator1 = -1;
                     for(int i = 0; i < this.user.getAvailableFlights().size(); i++) {
-                   	 	if(user.getAvailableFlights().get(i).getFlightnumber() == theFlightNumber1) {
+                   	 	if(user.getAvailableFlights().get(i).getFlightnumber().equals(theFlightNumber1)) {
                    	 		found1 = true;
                    	 		iterator1 = i;
                    	 	}
@@ -514,7 +514,7 @@ public class AirlineDriver {
                 	flightnumber = in.next();
                 	boolean notUnique = false;
                 	for(Flight f : theAvaiableFlights) {
-                		if(flightnumber == f.getFlightnumber()) {
+                		if(flightnumber.equals(f.getFlightnumber())) {
                 			System.out.println("|    The Flight number was not unique                     |");
                 			notUnique = true;
                 		}
@@ -589,7 +589,7 @@ public class AirlineDriver {
                  }
                  if(flifound1) {
                 	 theAvaiableFlights.remove(iter1);
-                	 this.user.setAvailableFlights(theAvaiableFlights);;
+                	 this.user.setAvailableFlights(theAvaiableFlights);
                 	 System.out.println("|                   Sucessful                              |");
                  }
                  else {

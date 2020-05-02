@@ -42,7 +42,8 @@ public class AirlineSystemDriver {
         this.loggedInUser = new User("a","a","a");
     }
     public void populateTheSystem(String filepath) {
-    	try(Scanner input = new Scanner(new File(filepath))){
+    	try{
+    	    Scanner input = new Scanner(new File(filepath))
     	}
     	catch(FileNotFoundException e) {
     		System.out.println("Incorrect file path, Please try with a different file");
@@ -448,7 +449,7 @@ public class AirlineSystemDriver {
         cs.add(c1);
         ArrayList<Airline> als = new ArrayList<>();
         Airline a1 = new Airline("admin", "p", "Delta");
-        ArrayList<Flight> availableFlights = new ArrayList<Flight>();
+        ArrayList<Flight> availableFlights = new ArrayList<>();
         String[] someLayovers = {"Handover", "Dover"}; 
         Flight f1 = new Flight("DEL130", 5, "11283000", "12:30", "Illinois,Chigago", "Indiana,Indianapolis", 35.00, someLayovers, 200, 230, "Delta");
         availableFlights.add(f1);
